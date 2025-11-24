@@ -23,7 +23,7 @@ class Button:
         self.msg_image_rect.center = self.rect.center
 
     def draw(self):
-        self.screen.fill(self.setting.button_color, self.rect)
+        self.screen.fill(self.settings.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
 
     def check_clicked(self, mouse_pos):
