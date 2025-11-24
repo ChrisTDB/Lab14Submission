@@ -1,7 +1,26 @@
+"""
+Settings module for Alien Invasion.
+
+Author: Christopher Orta
+Date: 11/24/2025
+
+Purpose: Centralized game configuration. The `Settings` class stores static
+and dynamic settings used throughout the game and provides methods to
+initialize and scale dynamic values as difficulty increases.
+"""
+
 from pathlib import Path
+
+
 class Settings:
-    
+    """Container for game settings and configuration.
+
+    Static values (file paths, window size, colors) are initialized in
+    the constructor. Dynamic values such as speeds are set in
+    `initialize_dynamic_settings()` so they can be reset between games.
+    """
     def __init__(self):
+        """Initialize static settings for the game."""
         self.name: str = 'Alien Invasion'
         self.screen_w = 1200
         self.screen_h = 800
@@ -19,8 +38,6 @@ class Settings:
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         
-        
-
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
         self.alien_w = 40
         self.alien_h = 40
@@ -36,6 +53,12 @@ class Settings:
         self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
 
     def initialize_dynamic_settings(self):
+        """Initialize settings that may change throughout the game.
+
+        This method is called when starting or restarting a game to set
+        movement speeds, bullet limits, and point values to their base
+        values.
+        """
         self.ship_speed = 10
         self.starting_ship_count = 3
         self.bullet_speed = 20
@@ -47,8 +70,9 @@ class Settings:
         self.alien_points = 50
 
     def increase_difficulty(self):
+        """Scale dynamic settings to increase game difficulty."""
         self.ship_speed *= self.difficulty_scale
         self.bullet_speed *= self.difficulty_scale
         self.fleet_speed *= self.difficulty_scale
-        
+
             
